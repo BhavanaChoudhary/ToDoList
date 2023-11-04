@@ -1,0 +1,77 @@
+import java.util.Scanner;
+
+public class Main {
+  public static void main(String[] args) {
+    String username;
+    final int MaxTasks = 5;
+    String tasks[] = new String[MaxTasks];
+    Scanner sc = new Scanner(System.in);
+    int TaskCount = 0;
+
+
+    System.out.println("///////////////////////////////");
+    System.out.println("/// Welcome, Enter your name///");
+    System.out.println("///////////////////////////////");
+    // Read the user's name
+    username = sc.nextLine();
+    while (true) {
+      System.out.println(" ☺☺☺     MY TO-DO LIST     ☺☺☺ ");
+      System.out.println("  ⬇  ⬇  ⬇  ⬇  ⬇  ⬇  ⬇  ⬇  ⬇  ⬇  ");
+      for (int i = 0; i < TaskCount; i++) {
+        // Display existing tasks
+        System.out.println((i + 1) + ". " +tasks[i]);
+      }
+
+      System.out.println("~~Choose the option~~");
+      System.out.println("1. ADD THE TASK");
+      System.out.println("2. REMOVE THE TASK IF COMPLETED");
+      System.out.println("3. EXIT THE LIST");
+
+
+      System.out.println("Enter the choice");
+      int choice = sc.nextInt();// Read the user's choice
+      switch (choice) {
+
+      case 1:
+        //In Java, you can input a string with spaces using the nextLine() method of the Scanner class.
+        sc.nextLine(); // Consume the newline character
+        if (TaskCount < MaxTasks) {
+          System.out.println("ADD THE TASK TO THE TO DO LIST ⬇");
+          // This line will read the entire line entered by the user, which could include spaces, and store it in the task variable.
+          String task = sc.nextLine();
+          tasks[TaskCount] = task;// Add the task to the list
+          TaskCount++; //Increment the TaskCount by one
+          System.out.println("Task added: " + task);
+
+        } else {
+          System.out.println("OOPS!! ☹☹☹☹☹☹☹☹☹ \n TO-DO LIST IS FULL. REMOVE SOME TASKS!!!");
+
+
+        }
+        break;
+      case 2:  System.out.println("ENTER THE TASK NUMBER TO REMOVE ⬇");
+        int taskNumber = sc.nextInt();
+        if (taskNumber > 0 && taskNumber <= TaskCount) {
+          for (int i = taskNumber - 1; i < TaskCount - 1; i++) {
+            tasks[i] = tasks[i + 1]; //shifts the task number to remove the selected one
+          }
+          TaskCount--; //Decrement the TaskCount by one
+          System.out.println("Removed task: " + tasks[taskNumber-1]);
+        } else {
+          System.out.println(" ☹INVALID TASK NUMBER.☹");
+
+
+        }
+        break;
+      case 3:
+        System.exit(0);
+      default:
+        System.out.println("☹INVALID CHOICE. PLEASE ENTER THE APPROPRIATE CHOICE");
+        break;
+    }
+  }
+
+
+
+    }
+  }
